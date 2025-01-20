@@ -40,7 +40,11 @@ class EntityReferenceRenderedDisabled extends EntityReferenceRenderedBase {
     $element['entity'] = $view_builder->view($target, $this->getSetting('display_mode'), $target->language()->getId());
 
     $name = $this->fieldDefinition->getName();
-    static::setWidgetState($form['#parents'], $name, $form_state, ['original_deltas' => [0 => 0]]);
+    $field_state = [
+      'items_count' => count($items),
+      'original_deltas' => [0 => 0],
+    ];
+    static::setWidgetState($form['#parents'], $name, $form_state, $field_state);
 
     return $element;
   }
